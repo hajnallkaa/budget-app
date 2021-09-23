@@ -1,0 +1,36 @@
+@import '~antd/dist/antd.css';
+
+:root {
+  --main: #34626C;
+  --main2: #839B97;
+  --text: #556352;
+  --secondary: #CFD3CE;
+  --third: #C6B497;
+}
+
+.menuitem:hover{
+  background-color:var(--main2)!important;
+  color: #fff!important;
+}
+
+.menuitem:active{
+  background-color: var(--main2)!important;
+}
+
+.site-layout-content {
+  height:100%;
+  padding: 24px;
+  background: var(--secondary);
+  color: var(--text);
+  
+}
+ .logo {
+  float: right;
+  width: 50px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
+  background-image: url(./assets/logo.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 5;
+}

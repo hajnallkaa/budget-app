@@ -1,0 +1,39 @@
+
+
+.inputstyle {
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.formstyle{
+    border: 3px solid white;
+    width: 60%;
+    margin-top: 50px;
+    padding: 10px;
+}
+.homediv{
+    background-image: url('../../assets/background.png')!important;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.button {
+  background-color: #34626C;
+  color: white;
+}
+p{
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 700px) {
+    .formstyle{
+        width:100%;
+    }
+    .homediv{
+        background-size: 0%;
+    }
+  }
