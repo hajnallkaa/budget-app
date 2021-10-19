@@ -3,29 +3,7 @@ import axios from 'axios';
 
 
 const contextDefaultValues: ContextType = {
-    transactions: [
-        {
-            id: 1,
-            type: "Income",
-            category: 'Salary',
-            amount: 50,
-            date: 'Wed Sep 16'
-        },
-        {
-            id: 2,
-            type: "Expense",
-            category: 'Pets',
-            amount: 50,
-            date: 'Wed Sep 18'
-        },
-        {
-            id: 3,
-            type: "Income",
-            category: 'Business',
-            amount: 50,
-            date: 'Wed Sep 17'
-        },
-    ],
+    transactions: [],
     saveTransaction: () => {},
     updateTransaction: () => {},
     deleteTransaction: () => {}
@@ -38,6 +16,21 @@ export const ExpenseTrackerContext = React.createContext<ContextType>(contextDef
 export const ExpenseTrackerProvider: React.FC = ({ children }) => {
     const [transactions, setTransactions] = React.useState<ITransactions[]>(contextDefaultValues.transactions)
   
+    React.useEffect(() => {
+      const getTransactions = () => {
+        axios.get<ITransactions[]>("http://localhost:3001/listTransactions")
+        .then( response => {
+          console.log(response.data);
+          setTransactions(response.data)
+        })
+        .catch(ex => {
+          console.log(ex)
+        });
+      }
+      getTransactions();
+    } , [])
+
+
     const saveTransaction = (transaction: ITransactions) => {
       const newTransaction: ITransactions = {
         id: Math.random(), // need to be done better, uuid
