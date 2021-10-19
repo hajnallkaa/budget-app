@@ -1,7 +1,8 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {Form} from 'antd';
 import {Card, Typography, Divider} from 'antd';
+import axios from "axios";
 import './style.css';
 
 import {ExpenseTrackerContext} from '../context/context';
@@ -36,7 +37,18 @@ const MyForm: React.FC = () => {
   const handleSaveTransaction = (e: React.FormEvent, formData: ITransactions | any) => {
       e.preventDefault()
       saveTransaction(formData)
+      addTransactions(formData)
   }
+
+  const addTransactions = (formData: ITransactions) => {
+    axios.post(`http://localhost:3001/addTransaction`, formData)
+      .then(res => {
+        console.log(res);        
+      }).catch((error)=> {
+    console.log(error);    
+  })
+  }
+
     return (
       <>
         <Card title="Expense Tracker">
