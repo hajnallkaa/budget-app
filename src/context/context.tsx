@@ -32,13 +32,9 @@ export const ExpenseTrackerProvider: React.FC = ({ children }) => {
 
 
     const saveTransaction = (transaction: ITransactions) => {
-      const newTransaction: ITransactions = {
-        id: Math.random(), // need to be done better, uuid
-        type: transaction.type,
-        category: transaction.category,
-        amount: transaction.amount,
-        date: transaction.date
-      }
+      let newTransaction = transaction;
+      newTransaction.amount = Number(transaction.amount)
+      newTransaction.id = Math.random()
       setTransactions([...transactions, newTransaction])
     }
   
