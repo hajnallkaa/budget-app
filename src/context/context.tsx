@@ -34,7 +34,7 @@ export const ExpenseTrackerProvider: React.FC = ({ children }) => {
     const saveTransaction = (transaction: ITransactions) => {
       let newTransaction = transaction;
       newTransaction.amount = Number(transaction.amount)
-      newTransaction.id = Math.random()
+      newTransaction.id = Math.random() 
       setTransactions([...transactions, newTransaction])
     }
   

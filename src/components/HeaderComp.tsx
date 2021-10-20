@@ -9,10 +9,10 @@ const HeaderComp: React.FC = () => {
       <Header style={{background:'#34626C'}}>
       <div className="logo"/>
     <Menu style={{background:'#34626C'}}   theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-      <Menu.Item className="menuitem"style={{color:"#ffffff"}}><Link to='/'>Home</Link></Menu.Item>
-      <Menu.Item className="menuitem"><Link to='/budget'>Your Budget</Link></Menu.Item>
-      <Menu.Item className="menuitem"><Link to='/statistics'>Statistics</Link></Menu.Item>
-      <Menu.Item className="menuitem"><Link to='/months'>Months</Link></Menu.Item>
+      <Menu.Item key="home" className="menuitem"style={{color:"#ffffff"}}><Link to='/'>Home</Link></Menu.Item>
+      <Menu.Item key="budget" className="menuitem"><Link to='/budget'>Your Budget</Link></Menu.Item>
+      <Menu.Item key="statistics"className="menuitem"><Link to='/statistics'>Statistics</Link></Menu.Item>
+      <Menu.Item key="months" className="menuitem"><Link to='/months'>Months</Link></Menu.Item>
     </Menu>
   </Header>
     )
