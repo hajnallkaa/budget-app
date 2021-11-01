@@ -1,38 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { Pie } from '@ant-design/charts';
+import axios from 'axios';
 
-
-
-const Chart: React.FC = () => {
-  var data = [
+const IncomeChart: React.FC = () => {
+  const [incomes, setIncomes] = React.useState<Record<string, any>[]>([
     {
-      type: 'Grocery',
-      value: 27,
-    },
-    {
-      type: 'Bills',
-      value: 25,
-    },
-    {
-      type: 'Fun',
-      value: 18,
-    },
-    {
-      type: 'Salary',
-      value: 15,
-    },
-    {
-      type: 'Business',
-      value: 10,
-    },
-    {
-      type: 'Other',
-      value: 5,
-    },
-  ];
+      type: "",
+      value: 0,
+    }
+  ]);
+  
+    React.useEffect(() => {
+      const getIncomes = () => {
+        axios.get<Record<string, any>[]>("http://localhost:3001/listIncomes")
+        .then( response => {
+          console.log(response.data);
+          setIncomes(response.data)
+        })
+        .catch(err => {
+          console.log(err)
+        });
+      }
+      getIncomes();
+    } , [])
+    
   var config = {
     appendPadding: 10,
-    data: data,
+    data: incomes,
     angleField: 'value',
     colorField: 'type',
     color: ['#34626C', '#839B97', '#5E8B7E', '#CFD3CE', '#C6B497', '#8E7F7F'],
@@ -63,4 +57,4 @@ const Chart: React.FC = () => {
   return <Pie {...config} />;
 };
 
-export default Chart;
+export default IncomeChart;

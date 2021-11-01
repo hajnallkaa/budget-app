@@ -43,9 +43,9 @@ const List: React.FC = () => {
                 <MyList.Item>
                     <MyList.Item.Meta
                     key={transaction.id}
-                    avatar={<Avatar style={transaction.type === 'Income' ? incomestyle : expensestyle}><DollarCircleOutlined /></Avatar>}
-                    title={<a href="https://ant.design">{transaction.category}</a>}
-                    description={transaction.date + ' - ' + transaction.amount +'$'}
+                    avatar={<Avatar style={transaction.category === 'Income' ? incomestyle : expensestyle}><DollarCircleOutlined /></Avatar>}
+                    title={<a href="https://ant.design">{transaction.type}</a>}
+                    description={transaction.date + ' - ' + transaction.value +'$'}
                     />
                     <DeleteOutlined  style={{marginRight: '10px'}} onClick={(e) => handleDeleteTransaction(e, transaction.id)}/>
                 </MyList.Item>

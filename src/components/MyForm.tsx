@@ -16,10 +16,10 @@ const MyForm: React.FC = () => {
     const [componentSize, setComponentSize] = useState<SizeType | 'default'>('default');
     const [formData, setFormData] = React.useState<ITransactions>(
         {
-            id: -1,
-            type: "Income",
-            category: "Salary",
-            amount: 0,
+            id: Math.random(),
+            category: "Income",
+            type: "Salary",
+            value: 5000,
             date: ""
         }
     )
@@ -61,15 +61,15 @@ const MyForm: React.FC = () => {
         <form className='Form' onSubmit={(e) => handleSaveTransaction(e, formData)} style={{padding:'10px'}}>
         <div>
           <div>
-            <label htmlFor='type'>Type</label>
-            <select className='inputstyle' id="type" onChange={handleInput}>
+            <label htmlFor='category'>Category</label>
+            <select className='inputstyle' id="category" onChange={handleInput}>
                 <option value="Income">Income</option>
                 <option value="Expense">Expense</option>
             </select>
           </div>
           <div>
-            <label htmlFor='category'>Category</label>
-            <select className='inputstyle' id="category" onChange={handleInput}>
+            <label htmlFor='type'>Type</label>
+            <select className='inputstyle' id="type" onChange={handleInput}>
                 <option value="Salary">Salary</option>
                 <option value="Business">Business</option>
                 <option value="Bills">Bills</option>
@@ -79,8 +79,8 @@ const MyForm: React.FC = () => {
             </select>
           </div>
           <div>
-            <label htmlFor='amount'>Amount</label>
-            <input className='inputstyle' onChange={handleInput} type='number' id='amount' />
+            <label htmlFor='value'>Amount</label>
+            <input className='inputstyle' onChange={handleInput} type='number' id='value' />
           </div>
           <div>
             <label htmlFor='date'>Date</label>

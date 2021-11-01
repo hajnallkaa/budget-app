@@ -2,7 +2,7 @@ interface ITransactions {
     id: number
     type: string
     category: string
-    amount: number
+    value: number
     date: string // should be Date format
   }
   

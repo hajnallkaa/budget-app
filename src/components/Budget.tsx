@@ -2,10 +2,11 @@ import React from 'react';
 import { Layout } from 'antd';
 import HeaderComp from './HeaderComp';
 import { Row, Col, Divider } from 'antd';
-import Details from './Details';
 import MyForm from './MyForm';
 import ExpenseTrackerProvider from '../context/context';
 import List from './List';
+import ExpenseDetails from './ExpenseDetails';
+import IncomeDetails from './IncomeDetails';
 
 const { Content, Footer } = Layout;
 
@@ -25,7 +26,7 @@ const Budget: React.FC = () => {
               <Divider orientation="left">Your Budget</Divider>
                   <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} >
                     <Col xs={24} sm={24} md={24} lg={8} className="gutter-row" span={8}>
-                    <Details title="Income"/>
+                    <IncomeDetails title="Income"/>
                     </Col>
 
                     <Col xs={24} sm={24} md={24} lg={8}  className="gutter-row" span={8} style={mystyle}>
@@ -33,7 +34,7 @@ const Budget: React.FC = () => {
                     </Col>
 
                     <Col xs={24} sm={24} md={24} lg={8} className="gutter-row" span={8}>
-                    <Details title="Expense"/>
+                    <ExpenseDetails title="Expense"/>
                     </Col>
 
                   </Row>
