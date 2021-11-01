@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Pie } from '@ant-design/charts';
 import axios from 'axios';
+import {ExpenseTrackerContext} from '../context/context';
 
 const IncomeChart: React.FC = () => {
+  const { render } = React.useContext(ExpenseTrackerContext) as ContextType
   const [incomes, setIncomes] = React.useState<Record<string, any>[]>([
     {
       type: "",
@@ -22,7 +24,7 @@ const IncomeChart: React.FC = () => {
         });
       }
       getIncomes();
-    } , [])
+    } , [render])
     
   var config = {
     appendPadding: 10,

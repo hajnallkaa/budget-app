@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Pie } from '@ant-design/charts';
 import axios from 'axios';
+import {ExpenseTrackerContext} from '../context/context';
 
 const ExpenseChart: React.FC = () => {
-
+  const { render } = React.useContext(ExpenseTrackerContext) as ContextType
   const [expenses, setExpenses] = React.useState<Record<string, any>[]>([
     {
       type: "",
@@ -23,7 +24,7 @@ const ExpenseChart: React.FC = () => {
         });
       }
       getExpenses();
-    } , [])
+    } , [render])
   // var data = [
   //   {
   //     type: "Fun",

@@ -8,6 +8,7 @@ interface ITransactions {
   
   type ContextType = {
     transactions: ITransactions[]
+    render: boolean,
     saveTransaction: (transaction: ITransactions) => void
     updateTransaction: (transaction: ITransactions) => void
     deleteTransaction: (id: number) => void

@@ -19,7 +19,7 @@ const MyForm: React.FC = () => {
             id: Math.random(),
             category: "Income",
             type: "Salary",
-            value: 5000,
+            value: 0,
             date: ""
         }
     )
@@ -43,7 +43,7 @@ const MyForm: React.FC = () => {
   const addTransactions = (formData: ITransactions) => {
     axios.post(`http://localhost:3001/addTransaction`, formData)
       .then(res => {
-        console.log(res);        
+        console.log(res);
       }).catch((error)=> {
     console.log(error);    
   })
