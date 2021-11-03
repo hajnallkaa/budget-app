@@ -2,6 +2,7 @@ import React from 'react'
 import { Layout } from 'antd';
 import HeaderComp from './HeaderComp';
 import { Column } from '@ant-design/charts';
+import axios from 'axios';
 
 const {  Content, Footer } = Layout;
 
@@ -40,6 +41,26 @@ const myData = [
 ];
 
 const Statistics: React.FC = () => {
+  const [stat, setStat] = React.useState<Record<any, any>[]>([
+    {
+      x: 0,
+      y: 0
+    }
+  ]);
+
+  React.useEffect(() => {
+    const getStatistics = () => {
+      axios.get<Record<string, any>[]>("http://localhost:3001/listDays")
+      .then( response => {
+        console.log(response.data);
+        setStat(response.data)
+      })
+      .catch(err => {
+        console.log(err)
+      });
+    }
+    getStatistics();
+  } , [])
     return (
         <Layout className="layout" >
             <HeaderComp/>
@@ -47,7 +68,7 @@ const Statistics: React.FC = () => {
           <div className="site-layout-content">
           <>
             <Column
-              data={myData}
+              data={stat}
               height={500}
               xField="x"
               yField="y"

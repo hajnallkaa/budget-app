@@ -25,12 +25,7 @@ const ExpenseChart: React.FC = () => {
       }
       getExpenses();
     } , [render])
-  // var data = [
-  //   {
-  //     type: "Fun",
-  //     value: 1,
-  //   }
-  // ]
+
   
   var config = {
     appendPadding: 10,
