@@ -4,7 +4,6 @@ const shortid = require('shortid');
 
 const contextDefaultValues: ContextType = {
     transactions: [],
-    render: false,
     saveTransaction: () => {},
     updateTransaction: () => {},
     deleteTransaction: () => {},
@@ -14,7 +13,7 @@ export const ExpenseTrackerContext = React.createContext<ContextType>(contextDef
 
 export const ExpenseTrackerProvider: React.FC = ({ children }) => {
     const [transactions, setTransactions] = React.useState<ITransactions[]>(contextDefaultValues.transactions)
-    const [render, setRender] = React.useState<boolean>(false);
+    
 
     React.useEffect(() => {
       getTransactions();
@@ -25,7 +24,6 @@ export const ExpenseTrackerProvider: React.FC = ({ children }) => {
       .then( response => {
         console.log(response.data);
         setTransactions(response.data)
-        setRender(!render)
       })
       .catch(ex => {
         console.log(ex)
@@ -36,7 +34,6 @@ export const ExpenseTrackerProvider: React.FC = ({ children }) => {
       let newTransaction = transaction;
       newTransaction.value = Number(transaction.value)
       newTransaction.id = shortid.generate();
-      setRender(!render)
       setTransactions([...transactions, newTransaction])
     }
 
@@ -51,7 +48,6 @@ export const ExpenseTrackerProvider: React.FC = ({ children }) => {
 
     const deleteTransaction = (id: number) => {
       const newTransactions =  transactions.filter((transaction: ITransactions) => (transaction.id !== id))
-      setRender(!render)
       setTransactions(newTransactions)
     }
   
@@ -60,7 +56,6 @@ export const ExpenseTrackerProvider: React.FC = ({ children }) => {
       <ExpenseTrackerContext.Provider
       value={{
         transactions,
-        render,
         saveTransaction,
         updateTransaction,
         deleteTransaction,

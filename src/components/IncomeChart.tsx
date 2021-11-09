@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Pie } from '@ant-design/charts';
 import axios from 'axios';
 import {ExpenseTrackerContext} from '../context/context';
 
+
+
 const IncomeChart: React.FC = () => {
-  const { render } = React.useContext(ExpenseTrackerContext) as ContextType
-  const [incomes, setIncomes] = React.useState<Record<string, any>[]>([
+  const { saveTransaction } = React.useContext(ExpenseTrackerContext) as ContextType
+  const [incomes, setIncomes] = React.useState<IChart[]>([
     {
       type: "",
       value: 0,
@@ -14,7 +16,7 @@ const IncomeChart: React.FC = () => {
   
     React.useEffect(() => {
       const getIncomes = () => {
-        axios.get<Record<string, any>[]>("http://localhost:3001/listIncomes")
+        axios.get<IChart[]>("http://localhost:3001/listIncomes")
         .then( response => {
           console.log(response.data);
           setIncomes(response.data)
@@ -24,9 +26,9 @@ const IncomeChart: React.FC = () => {
         });
       }
       getIncomes();
-    } , [render])
+    } , [saveTransaction])
     
-  var config = {
+  let config = {
     appendPadding: 10,
     data: incomes,
     angleField: 'value',

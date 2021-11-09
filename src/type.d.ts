@@ -5,10 +5,18 @@ interface ITransactions {
     value: number
     date: string // should be Date format
   }
-  
+
+interface IDateStat {
+    x: number;
+    y: number;
+}
+
+interface IChart {
+  type: string;
+  value: number;
+}
   type ContextType = {
     transactions: ITransactions[]
-    render: boolean,
     saveTransaction: (transaction: ITransactions) => void
     updateTransaction: (transaction: ITransactions) => void
     deleteTransaction: (id: number) => void

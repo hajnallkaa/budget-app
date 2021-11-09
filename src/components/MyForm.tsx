@@ -1,9 +1,10 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {Form} from 'antd';
 import {Card, Typography, Divider} from 'antd';
 import axios from "axios";
 import './style.css';
+import 'antd/dist/antd.css';
 
 import {ExpenseTrackerContext} from '../context/context';
 
@@ -11,9 +12,12 @@ import {ExpenseTrackerContext} from '../context/context';
 
 type SizeType = Parameters<typeof Form>[0]['size'];
 
+
+
 const MyForm: React.FC = () => {
     const { saveTransaction, transactions } = React.useContext(ExpenseTrackerContext) as ContextType
     const [componentSize, setComponentSize] = useState<SizeType | 'default'>('default');
+    const [budget, setBudget] = React.useState(0);
     const [formData, setFormData] = React.useState<ITransactions>(
         {
             id: Math.random(),
@@ -23,6 +27,21 @@ const MyForm: React.FC = () => {
             date: ""
         }
     )
+
+    React.useEffect(() => {
+      const getBudget = () => {
+        axios.get<number>("http://localhost:3001/getSum")
+        .then( response => {
+          console.log(response.data);
+          setBudget(response.data)
+        })
+        .catch(err => {
+          console.log(err)
+        });
+      }
+      getBudget();
+  } , [saveTransaction])
+
     const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(size);
   };
@@ -49,11 +68,17 @@ const MyForm: React.FC = () => {
   })
   }
 
+  
+
     return (
       <>
         <Card title="Expense Tracker">
         <div style={{display: 'flex', justifyContent: 'center', fontSize: '30px'}}>
-          <Typography >Your Balance $100</Typography>
+        
+
+      <Typography>Your balance is {budget} dollar</Typography>
+      
+        
           </div>
           <Divider />
          
